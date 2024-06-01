@@ -17,7 +17,7 @@ float cm = 0;
 
 void clearLine(int line) {
   lcd.setCursor(0, line);
-  for (int i = 0; i < 16; i++)
+  for(int i = 0; i < 16; i++)
     lcd.print(" ");
   lcd.setCursor(0, line);
 }
