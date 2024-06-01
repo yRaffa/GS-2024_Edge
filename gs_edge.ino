@@ -77,6 +77,10 @@ void loop() {
   Serial.print("Distancia: ");
   Serial.print(cm);
   Serial.print("cm");
+  Serial.print(" || ");
+  Serial.print("Porcentagem: ");
+  Serial.print(porcentagem);
+  Serial.print("%");
   Serial.print("\n");
   delay(1000);
 
