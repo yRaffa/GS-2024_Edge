@@ -74,7 +74,7 @@ void loop() {
     lcd.print(' ');
   }
 
-  Serial.print("Distancia em cm: ");
+  Serial.print("Distancia: ");
   Serial.print(cm);
   Serial.print("cm");
   Serial.print("\n");
