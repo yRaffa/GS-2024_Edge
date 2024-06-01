@@ -1,8 +1,8 @@
-// Inclusão de bibliotecas
+// Incluindo de bibliotecas
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
 
-// Declaração de variaves das portas de cada componente
+// Declarando variaves das portas de cada componente
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
 
 int ledRed = 8;
@@ -14,7 +14,7 @@ int buzzer = 11;
 int echo = 12;
 int trigger = 13;
 
-// Declaração de variaveis
+// Declarando variaveis
 int porcentagem = 0;
 float cm = 0;
 
@@ -32,7 +32,7 @@ void setup() {
   // Iniciando o serial
   Serial.begin(9600);
 
-  // Declaração dos pinModes de cada componente
+  // Declarando pinModes de cada componente
   pinMode(ledRed, OUTPUT);
   pinMode(ledYellow, OUTPUT);
   pinMode(ledGreen, OUTPUT);
@@ -67,9 +67,7 @@ void loop() {
   cm = (cm / 58);
   porcentagem = (100 * cm) / 403.50; //337
   porcentagem = (porcentagem - 100);
-
-  if(porcentagem < 0)
-    porcentagem = (porcentagem * -1);
+  porcentagem = (porcentagem * -1);
 
   // Printando a porcentagem no lcd 
   String str_porcentagem = String(porcentagem);
@@ -101,7 +99,7 @@ void loop() {
   Serial.print("\n");
   delay(1000);
 
-  // Bloco de comando para 'Tanque Cheio'
+  // Bloco de comando para estado 'Tanque Cheio'
   if(porcentagem > 99) {
 
     // Apagando a linha e printando 'Tanque Cheio'
@@ -109,13 +107,13 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Tanque Cheio");
 
-    // Gerenciamento dos leds
+    // Gerenciando leds
     digitalWrite(ledRed, LOW);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, HIGH);
   }
   
-  // Bloco de comando para 'Quase Cheio'
+  // Bloco de comando para estado 'Quase Cheio'
   else if(porcentagem > 75) {
 
     // Apagando a linha e printando 'Quase Cheio'
@@ -123,7 +121,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Quase Cheio");
 
-    // Gerenciamento dos leds
+    // Gerenciando leds
     digitalWrite(ledRed, LOW);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, HIGH);
@@ -131,7 +129,7 @@ void loop() {
     digitalWrite(ledGreen, LOW);
   }
 
-  // Bloco de comando para 'Combustivel OK'
+  // Bloco de comando para estado 'Combustivel OK'
   else if(porcentagem > 25) {
 
     // Apagando a linha e printando 'Combustivel OK'
@@ -139,13 +137,13 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Combustivel OK");
 
-    // Gerenciamento dos leds
+    // Gerenciando leds
     digitalWrite(ledRed, LOW);
     digitalWrite(ledYellow, HIGH);
     digitalWrite(ledGreen, LOW);
   }
 
-  // Bloco de comando para 'Quase Vazio'
+  // Bloco de comando para estado 'Quase Vazio'
   else if(porcentagem > 1) {
 
     // Apagando a linha e printando 'Quase Vazio'
@@ -153,7 +151,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Quase Vazio");
 
-    // Gerenciamento dos leds e buzzer
+    // Gerenciando leds e buzzer
     digitalWrite(ledRed, HIGH);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, LOW);
@@ -164,7 +162,7 @@ void loop() {
     delay(1000);
   } 
 
-  // Bloco de comando para 'Tanque Vazio'
+  // Bloco de comando para estado 'Tanque Vazio'
   else {
 
     // Apagando a linha e printando 'Tanque Vazio'
@@ -172,7 +170,7 @@ void loop() {
     lcd.setCursor(0, 1);
     lcd.print("Tanque Vazio");
 
-    // Gerenciamento dos leds
+    // Gerenciando leds
     digitalWrite(ledRed, HIGH);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, LOW);
