@@ -70,11 +70,11 @@ void loop() {
   porcentagem = (porcentagem * -1);
 
   // Printando a porcentagem no lcd 
-  String str_porcentagem = String(porcentagem);
-
   lcd.setCursor(7, 0);
   lcd.print(porcentagem);
   lcd.print("%");
+
+  String str_porcentagem = String(porcentagem);
 
   if(str_porcentagem.length() < 3) {
     lcd.setCursor(10, 0);
