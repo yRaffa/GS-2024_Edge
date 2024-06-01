@@ -17,9 +17,8 @@ float cm = 0;
 
 void clearLine(int line) {
   lcd.setCursor(0, line);
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < 16; i++)
     lcd.print(" ");
-  }
   lcd.setCursor(0, line);
 }
 
@@ -42,8 +41,6 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(3, LOW);
-  delayMicroseconds(5);
   digitalWrite(trigger, LOW);
   delayMicroseconds(5);
   digitalWrite(trigger, HIGH);
@@ -54,20 +51,23 @@ void loop() {
   cm = (cm / 58);
 
   porcentagem = (100 * cm) / 403.50; //337
+  porcentagem = (porcentagem - 100);
 
-  porcentagem = porcentagem - 100;
   if(porcentagem < 0)
-    porcentagem = porcentagem * (-1);
+    porcentagem = (porcentagem * -1);
 
   String str_porcentagem = String(porcentagem);
 
   lcd.setCursor(7, 0);
   lcd.print(porcentagem);
   lcd.print("%");
+
   if(str_porcentagem.length() < 3) {
     lcd.setCursor(10, 0);
     lcd.print(' ');
-  } if(str_porcentagem.length() < 2) {
+  } 
+
+  if(str_porcentagem.length() < 2) {
     lcd.setCursor(9, 0);
     lcd.print(' ');
     lcd.setCursor(10, 0);
@@ -80,53 +80,60 @@ void loop() {
   Serial.print("\n");
   delay(1000);
 
-  if(porcentagem >= 99) {
-    digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, HIGH);
-
+  if(porcentagem > 99) {
     clearLine(1);
     lcd.setCursor(0, 1);
     lcd.print("Tanque Cheio");
-  } else if(porcentagem >= 80) {
+
+    digitalWrite(ledRed, LOW);
+    digitalWrite(ledYellow, LOW);
+    digitalWrite(ledGreen, HIGH);
+  }
+  
+  else if(porcentagem > 75) {
+    clearLine(1);
+    lcd.setCursor(0, 1);
+    lcd.print("Quase Cheio");
+
     digitalWrite(ledRed, LOW);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, HIGH);
     delay(2000);
     digitalWrite(ledGreen, LOW);
+  }
 
-    clearLine(1);
-    lcd.setCursor(0, 1);
-    lcd.print("Quase Cheio");
-  } else if(porcentagem >= 30) {
-    digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, HIGH);
-    digitalWrite(ledGreen, LOW);
-    
+  else if(porcentagem > 25) {
     clearLine(1);
     lcd.setCursor(0, 1);
     lcd.print("Combustivel OK");
-  } else if(porcentagem > 1) {
-    digitalWrite(ledYellow, LOW);
+
+    digitalWrite(ledRed, LOW);
+    digitalWrite(ledYellow, HIGH);
     digitalWrite(ledGreen, LOW);
+  }
+
+  else if(porcentagem > 1) {
+    clearLine(1);
+    lcd.setCursor(0, 1);
+    lcd.print("Quase Vazio");
 
     digitalWrite(ledRed, HIGH);
+    digitalWrite(ledYellow, LOW);
+    digitalWrite(ledGreen, LOW);
     tone(buzzer, 260);
     delay(2000);
     noTone(buzzer);
     digitalWrite(ledRed, LOW);
     delay(1000);
+  } 
 
-    clearLine(1);
-    lcd.setCursor(0, 1);
-    lcd.print("Quase Vazio");
-  } else {
-    digitalWrite(ledRed, HIGH);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, LOW);
-
+  else {
     clearLine(1);
     lcd.setCursor(0, 1);
     lcd.print("Tanque Vazio");
+
+    digitalWrite(ledRed, HIGH);
+    digitalWrite(ledYellow, LOW);
+    digitalWrite(ledGreen, LOW);
   }
 }
