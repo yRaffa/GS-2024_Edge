@@ -1,9 +1,13 @@
 // Incluindo bibliotecas
 #include <Wire.h>
+#include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
 // Declarando variaves das portas de cada componente
 LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+Servo servoMotor;
+int servoPin = A1;
 
 const float BETA = 3950;
 int temperatura = A2;
@@ -63,6 +67,9 @@ void setup() {
   // Iniciando lcd
   lcd.init();
   lcd.backlight();
+
+  // Linkando objeto e pin do servo
+  servoMotor.attach(servoPin);
 }
 
 // Loop do arduino
@@ -277,10 +284,23 @@ void loop() {
     digitalWrite(ledGreenTemp, LOW);
   }
 
+  // Ligando buzzer quando em situacao critica
   if(porcentagem <= 1 || ph > 8 || celsius > 60) {
     tone(buzzer, 260);
     delay(2000);
     noTone(buzzer);
+  }
+
+  // Abrindo comporta para reabastecimento quando tanque vazio
+  if(porcentagem <= 1) {
+    servoMotor.write(180);
+  	delay(2000);
+  } 
+  
+  // Fechando comporta para reabastecimento quando tanque cheio
+  else if(porcentagem > 99) {
+    servoMotor.write(90);
+  	delay(2000);
   }
 
   // Printando dados no serial
