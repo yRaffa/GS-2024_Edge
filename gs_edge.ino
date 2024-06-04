@@ -9,7 +9,6 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 Servo servoMotor;
 int servoPin = A1;
 
-const float BETA = 3950;
 int temperatura = A2;
 
 int potenciometro = A3;
@@ -35,6 +34,8 @@ int porcentagem = 0;
 float cm = 0;
 float ph = 0;
 float celsius = 0;
+
+const float BETA = 3950;
 
 // Função para apagar linha do lcd
 void apagarLinha(int coluna, int linha) {
