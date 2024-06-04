@@ -3,7 +3,7 @@
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 
-// Declarando variaves das portas de cada componente
+// Declarando variaves de cada componente
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
 Servo servoMotor;
