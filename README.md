@@ -32,7 +32,7 @@ Componentes Utilizados:
 - [Arduino UNO:](https://docs.wokwi.com/pt-BR/parts/wokwi-arduino-uno) Controlar os demais componentes.
 - [LCD_I2C:](https://docs.wokwi.com/pt-BR/parts/wokwi-lcd2004) Mostrar visualmente as informações.
 - [Sensor de Distância Ultrassônico HC-SR04:](https://docs.wokwi.com/pt-BR/parts/wokwi-hc-sr04) Medir a capacidade do tanque.
-- [Potênciometro:](https://docs.wokwi.com/pt-BR/parts/wokwi-potentiometer) Simular medição do Ph.
+- [Potenciômetro:](https://docs.wokwi.com/pt-BR/parts/wokwi-potentiometer) Simular medição do Ph.
 - [Sensor de Temperatura NTC:](https://docs.wokwi.com/pt-BR/parts/wokwi-ntc-temperature-sensor) Medir a temperatura do combustível.
 - [LEDs:](https://docs.wokwi.com/pt-BR/parts/wokwi-led) Feedback da situação do sistema.
 - [Buzzer:](https://docs.wokwi.com/pt-BR/parts/wokwi-buzzer) Feedback auditivo para situações críticas.
@@ -51,7 +51,7 @@ Incluir as seguintes bibliotecas no projeto:
 - Alterar os valores nos componentes: 
 
     - Sensor de Distância Ultrassônico HC-SR04
-    - Potênciometro
+    - Potenciômetro
     - Sensor de Temperatura NTC
 
 - Observar os dados apresentados no LCD_I2C
