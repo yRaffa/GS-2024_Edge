@@ -87,7 +87,7 @@ void loop() {
 
   // Calculando e tranformando unidades de medida
   cm = (cm / 58);
-  porcentagem = (100 * cm) / 403.50; //337
+  porcentagem = (100 * cm) / 403.50;
   porcentagem = (porcentagem - 100);
   porcentagem = (porcentagem * -1);
 
