@@ -285,7 +285,7 @@ void loop() {
   }
 
   // Ligando buzzer quando em situacao critica
-  if(porcentagem <= 1 || ph > 8 || celsius > 60) {
+  if(porcentagem <= 1 || (ph < 6 || ph > 8) || (celsius < 20 || celsius > 60)) {
     tone(buzzer, 260);
     delay(2000);
     noTone(buzzer);
