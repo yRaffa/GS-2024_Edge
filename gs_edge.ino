@@ -106,10 +106,10 @@ void loop() {
 // --- Saidas (Tanque) --- //
 
   // Printando a porcentagem no lcd
+  apagarLinha(0, 0);
   lcd.setCursor(0, 0);
-  lcd.print("Tanque:");
-  apagarLinha(7, 0);
-  lcd.setCursor(7, 0);
+  lcd.print("Capacidade:");
+  lcd.setCursor(11, 0);
   lcd.print(porcentagem);
   lcd.print("%");
     
@@ -193,9 +193,9 @@ void loop() {
 // --- Saidas (Ph) --- //
 
   // Printando Ph no lcd
+  apagarLinha(0, 2);
   lcd.setCursor(0, 2);
   lcd.print("Ph:");
-  apagarLinha(3, 2);
   lcd.setCursor(3, 2);
   lcd.print(ph, 0);
 
@@ -241,9 +241,9 @@ void loop() {
 // --- Saidas (Temperatura) --- //
 
   // Printando temperatura no lcd
+  apagarLinha(10, 2);
   lcd.setCursor(10, 2);
   lcd.print("Temp:");
-  apagarLinha(15, 2);
   lcd.setCursor(15, 2);
   lcd.print(celsius, 0);
   lcd.print("C");
@@ -317,7 +317,7 @@ void loop() {
   Serial.print(cm, 0);
   Serial.print("cm");
   Serial.print(" || ");
-  Serial.print("Tanque: ");
+  Serial.print("Capacidade: ");
   Serial.print(porcentagem);
   Serial.print("%");
   Serial.print(" || ");

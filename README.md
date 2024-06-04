@@ -15,7 +15,7 @@ Entrega da matéria Edge Computing & Computer Systems para GS 2024.
 
 <img src="circuito.png"></img>
 
-Este projeto consiste em um sistema de monitoramento de informações sobre combutíveis limpos utilizados em embarcações marinhas, com o intuito de colher dados para minimizar os gastos de combustíveis e emissões de poluentes nos mares e atmosfera.
+Este projeto consiste em um sistema de monitoramento de informações sobre combutíveis limpos utilizados em embarcações marinhas, com o intuito de colher dados como: capacidade, pH e temperatura, para minimizar os gastos de combustíveis e emissões de poluentes nos mares e atmosfera.
 
 ## 🔨 Ferramentas
 
@@ -32,7 +32,7 @@ Componentes Utilizados:
 - [Arduino UNO:](https://docs.wokwi.com/pt-BR/parts/wokwi-arduino-uno) Controlar os demais componentes.
 - [LCD_I2C:](https://docs.wokwi.com/pt-BR/parts/wokwi-lcd2004) Mostrar visualmente as informações.
 - [Sensor de Distância Ultrassônico HC-SR04:](https://docs.wokwi.com/pt-BR/parts/wokwi-hc-sr04) Medir a capacidade do tanque.
-- [Potenciômetro:](https://docs.wokwi.com/pt-BR/parts/wokwi-potentiometer) Simular medição do Ph.
+- [Potenciômetro:](https://docs.wokwi.com/pt-BR/parts/wokwi-potentiometer) Simular medição do pH.
 - [Sensor de Temperatura NTC:](https://docs.wokwi.com/pt-BR/parts/wokwi-ntc-temperature-sensor) Medir a temperatura do combustível.
 - [LEDs:](https://docs.wokwi.com/pt-BR/parts/wokwi-led) Feedback da situação do sistema.
 - [Buzzer:](https://docs.wokwi.com/pt-BR/parts/wokwi-buzzer) Feedback auditivo para situações críticas.
@@ -48,7 +48,7 @@ Incluir as seguintes bibliotecas no projeto:
 
 - Abrir o [projeto no Wokwi](#-gs-inovação-azul)
 - Iniciar a simulação no botão 'Start the simulation'
-- Alterar os valores nos componentes: 
+- Alterar os valores de capacidade, pH e temperatura, respectivamente nos componentes: 
 
     - Sensor de Distância Ultrassônico HC-SR04
     - Potenciômetro
