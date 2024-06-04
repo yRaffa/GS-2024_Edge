@@ -82,6 +82,8 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trigger, LOW);
 
+// --- Captacoes de dados --- //
+
   // Captando dados do sensor de distancia ultrasonico
   cm = pulseIn(echo, HIGH);
 
@@ -100,7 +102,7 @@ void loop() {
   // Transformando valor para °C
   celsius = 1 / (log(1 / (1023. / temp - 1)) / BETA + 1.0 / 298.15) - 273.15;  
 
-// --- LCD / LEDs / Buzzer --- //
+// --- Saidas (Tanque) --- //
 
   // Printando a porcentagem no lcd
   lcd.setCursor(0, 0);
@@ -187,6 +189,7 @@ void loop() {
     digitalWrite(ledGreenTanque, LOW);
   }
 
+// --- Saidas (Ph) --- //
 
   // Printando Ph no lcd
   lcd.setCursor(0, 2);
@@ -234,6 +237,7 @@ void loop() {
     digitalWrite(ledGreenPh, LOW);
   }
 
+// --- Saidas (Temperatura) --- //
 
   // Printando temperatura no lcd
   lcd.setCursor(10, 2);
@@ -291,6 +295,8 @@ void loop() {
     noTone(buzzer);
   }
 
+// --- ServoMotor --- //
+
   // Abrindo comporta para reabastecimento quando tanque vazio
   if(porcentagem <= 1) {
     servoMotor.write(180);
@@ -302,6 +308,8 @@ void loop() {
     servoMotor.write(90);
   	delay(2000);
   }
+
+// --- Serial --- //
 
   // Printando dados no serial
   Serial.print("Distancia: ");
