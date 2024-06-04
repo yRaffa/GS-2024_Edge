@@ -46,7 +46,7 @@ Incluir as seguintes bibliotecas no projeto:
 
 ## 📒 Instruções de Uso
 
-- Abrir o [projeto no Wokwi](#-gs-inovação-azul)
+- Abrir o [projeto no Wokwi](https://wokwi.com/projects/399769764705866753)
 - Iniciar a simulação no botão 'Start the simulation'
 - Alterar os valores de capacidade, pH e temperatura, respectivamente nos componentes: 
 
