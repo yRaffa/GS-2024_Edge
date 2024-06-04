@@ -10,9 +10,15 @@ int temperatura = A2;
 
 int potenciometro = A3;
 
-int ledRed = 8;
-int ledYellow = 9;
-int ledGreen = 10;
+int ledRedTemp = 4;
+int ledGreenTemp = 5;
+
+int ledRedPh = 6;
+int ledGreenPh = 7;
+
+int ledRedTanque = 8;
+int ledYellowTanque = 9;
+int ledGreenTanque = 10;
 
 int buzzer = 11;
 
@@ -20,7 +26,7 @@ int echo = 12;
 int trigger = 13;
 
 // Declarando variaveis
-int valor = 0;
+int temp = 0;
 int porcentagem = 0;
 float cm = 0;
 float ph = 0;
@@ -45,9 +51,9 @@ void setup() {
 
   pinMode(potenciometro, INPUT);
 
-  pinMode(ledRed, OUTPUT);
-  pinMode(ledYellow, OUTPUT);
-  pinMode(ledGreen, OUTPUT);
+  pinMode(ledRedTanque, OUTPUT);
+  pinMode(ledYellowTanque, OUTPUT);
+  pinMode(ledGreenTanque, OUTPUT);
 
   pinMode(buzzer, OUTPUT);
 
@@ -82,12 +88,12 @@ void loop() {
   ph = map(analogRead(potenciometro), 0, 1023, 0.0, 14.0);
 
   // Captando dados do sensor de temperatura
-  valor = analogRead(temperatura);
+  temp = analogRead(temperatura);
 
   // Transformando valor para °C
-  celsius = 1 / (log(1 / (1023. / valor - 1)) / BETA + 1.0 / 298.15) - 273.15;  
+  celsius = 1 / (log(1 / (1023. / temp - 1)) / BETA + 1.0 / 298.15) - 273.15;  
 
-// --- LCD --- //
+// --- LCD / LEDs / Buzzer --- //
 
   // Printando a porcentagem no lcd
   lcd.setCursor(0, 0);
@@ -106,9 +112,9 @@ void loop() {
     lcd.print("Tanque Cheio");
 
     // Gerenciando leds
-    digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, HIGH);
+    digitalWrite(ledRedTanque, LOW);
+    digitalWrite(ledYellowTanque, LOW);
+    digitalWrite(ledGreenTanque, HIGH);
   }
     
   // Bloco de comando para estado 'Quase Cheio'
@@ -120,11 +126,11 @@ void loop() {
     lcd.print("Quase Cheio");
 
     // Gerenciando leds
-    digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, HIGH);
+    digitalWrite(ledRedTanque, LOW);
+    digitalWrite(ledYellowTanque, LOW);
+    digitalWrite(ledGreenTanque, HIGH);
     delay(2000);
-    digitalWrite(ledGreen, LOW);
+    digitalWrite(ledGreenTanque, LOW);
   }
 
   // Bloco de comando para estado 'Combustivel OK'
@@ -136,9 +142,9 @@ void loop() {
     lcd.print("Combustivel Ok");
 
     // Gerenciando leds
-    digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, HIGH);
-    digitalWrite(ledGreen, LOW);
+    digitalWrite(ledRedTanque, LOW);
+    digitalWrite(ledYellowTanque, HIGH);
+    digitalWrite(ledGreenTanque, LOW);
   }
 
   // Bloco de comando para estado 'Quase Vazio'
@@ -150,13 +156,13 @@ void loop() {
     lcd.print("Quase Vazio");
 
     // Gerenciando leds e buzzer
-    digitalWrite(ledRed, HIGH);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, LOW);
+    digitalWrite(ledRedTanque, HIGH);
+    digitalWrite(ledYellowTanque, LOW);
+    digitalWrite(ledGreenTanque, LOW);
     tone(buzzer, 260);
     delay(2000);
     noTone(buzzer);
-    digitalWrite(ledRed, LOW);
+    digitalWrite(ledRedTanque, LOW);
     delay(1000);
   } 
 
@@ -169,9 +175,9 @@ void loop() {
     lcd.print("Tanque Vazio");
 
     // Gerenciando leds
-    digitalWrite(ledRed, HIGH);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, LOW);
+    digitalWrite(ledRedTanque, HIGH);
+    digitalWrite(ledYellowTanque, LOW);
+    digitalWrite(ledGreenTanque, LOW);
   }
 
 
@@ -189,6 +195,10 @@ void loop() {
     apagarLinha(0, 3);
     lcd.setCursor(0, 3);
     lcd.print("Ph Ok");
+
+    // Gerenciando leds
+    digitalWrite(ledRedPh, LOW);
+    digitalWrite(ledGreenPh, HIGH);
   } 
   
   // Bloco de comando para estado 'Ph Baixo'
@@ -198,6 +208,10 @@ void loop() {
     apagarLinha(0, 3);
     lcd.setCursor(0, 3);
     lcd.print("Ph Baixo");
+
+    // Gerenciando leds
+    digitalWrite(ledRedPh, HIGH);
+    digitalWrite(ledGreenPh, LOW);
   }
 
   // Bloco de comando para estado 'Ph Alto'
@@ -207,6 +221,10 @@ void loop() {
     apagarLinha(0, 3);
     lcd.setCursor(0, 3);
     lcd.print("Ph Alto");
+
+    // Gerenciando leds
+    digitalWrite(ledRedPh, HIGH);
+    digitalWrite(ledGreenPh, LOW);
   }
 
 
@@ -227,6 +245,10 @@ void loop() {
     apagarLinha(10, 3);
     lcd.setCursor(10, 3);
     lcd.print("Temp Ok");
+
+    // Gerenciando leds
+    digitalWrite(ledRedTemp, LOW);
+    digitalWrite(ledGreenTemp, HIGH);
   }
 
   // Bloco de comando para estado 'Temp Baixa'
@@ -236,6 +258,10 @@ void loop() {
     apagarLinha(10, 3);
     lcd.setCursor(10, 3);
     lcd.print("Temp Baixa");
+
+    // Gerenciando leds
+    digitalWrite(ledRedTemp, HIGH);
+    digitalWrite(ledGreenTemp, LOW);
   }
 
   // Bloco de comando para estado 'Temp Alta'
@@ -245,6 +271,16 @@ void loop() {
     apagarLinha(10, 3);
     lcd.setCursor(10, 3);
     lcd.print("Temp Alta");
+
+    // Gerenciando leds
+    digitalWrite(ledRedTemp, HIGH);
+    digitalWrite(ledGreenTemp, LOW);
+  }
+
+  if(porcentagem <= 1 || ph > 8 || celsius > 60) {
+    tone(buzzer, 260);
+    delay(2000);
+    noTone(buzzer);
   }
 
   // Printando dados no serial
