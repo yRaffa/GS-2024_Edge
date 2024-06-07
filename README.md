@@ -293,7 +293,7 @@ void loop() {
   }
 ```
 
-- Ligando um alerna com buzzer para as situações críticas.
+- Ligando um alerta com buzzer para as situações críticas.
 ``` c++
   if(porcentagem <= 1 || (ph < 6 || ph > 8) || (celsius < 20 || celsius > 60)) {
     tone(buzzer, 260);
